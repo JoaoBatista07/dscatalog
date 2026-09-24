@@ -10,10 +10,10 @@ import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -63,11 +63,10 @@ public class ProductService {
         }
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    @Transactional
     public void delete(Long id) {
-
-        if (!ProductRepository.existsById(id)){
-            throw new ResourceNotFoundException("Not found");
+        if (!ProductRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Recurso não encontrado");
         }
         try{
             ProductRepository.deleteById(id);
