@@ -29,10 +29,11 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable){
+    public Page<ProductDTO> findAllPaged(String name, Pageable pageable){
         Page<Product> result = ProductRepository.findAll(pageable);
         return result.map(x -> new ProductDTO(x));
     }
+
 
     @Transactional(readOnly = true)
     public ProductDTO findById(Long id){
