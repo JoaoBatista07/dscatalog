@@ -1,5 +1,7 @@
 package com.devsuperior.dscatalog.tests;
 
+import com.devsuperior.dscatalog.controllers.exceptions.ControllerExceptionHandler;
+import com.devsuperior.dscatalog.controllers.exceptions.StandardError;
 import com.devsuperior.dscatalog.dto.ProductDTO;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.entities.Product;

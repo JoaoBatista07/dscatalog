@@ -134,4 +134,16 @@ public class ProductServiceTests {
         Assertions.assertEquals(existingId, productDTO.getId());
 
     }
+
+    @Test
+    public void updateShouldThrowResourceNotFoundExceptionWhenNonExistingId(){
+
+        Mockito.when(repository.getReferenceById(nonExistingId))
+                .thenThrow(new ResourceNotFoundException("Not Found"));
+
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> service.update(nonExistingId, productDTO));
+
+        Mockito.verify(repository, Mockito.times(1)).getReferenceById(nonExistingId);
+
+    }
 }
