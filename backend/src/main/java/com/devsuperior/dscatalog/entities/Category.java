@@ -68,6 +68,10 @@ public class Category {
         updatedAt = Instant.now();
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
