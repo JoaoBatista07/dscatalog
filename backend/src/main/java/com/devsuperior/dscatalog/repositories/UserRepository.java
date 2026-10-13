@@ -16,6 +16,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "WHERE UPPER(obj.firstName) LIKE UPPER(CONCAT('%',:name,'%'))")
     Page<User> searchByName(String name, Pageable pageable);
 
-    //verifica se existe o email no banco de dados.
+
+
+    // POST: verifica se o e-mail já está cadastrado
     boolean existsByEmail(String email);
+
+    // PUT: verifica se outro usuário já utiliza o e-mail
+    boolean existsByEmailAndIdNot(String email, Long id);
+
 }
